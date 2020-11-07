@@ -1,12 +1,13 @@
 <template>
     <div>
-        <h3>Add Task <span><button @click="toggleView">{{ visible ? "Hide" : "Show" }}</button></span> </h3>
+        <button v-if="!visible" @click="toggleView">"++++++++++Add New Task++++++++++"</button>
         <div v-if="visible">
             <input type="text" placeholder="Name" v-model="name">
             <input type="text" placeholder="Description" v-model="description">
             <input type="text" placeholder="Duration" v-model="duration">
             <input type="text" placeholder="priority" v-model="priority">
             <button @click="addTask">Add</button>
+            <button @click="toggleView">Cancel</button>
         </div>   
     </div>
 </template>
@@ -19,10 +20,12 @@ export default {
         "taskDuration",
         "taskPriority"
     ],
-    emits:['add-task'],
+    emits:[
+        'add-task'
+    ],
     data: function() {
         return {
-            visible: true, 
+            visible: false, 
             name: '',
             description: '',
             duration: '',
@@ -32,10 +35,11 @@ export default {
     }, 
     methods : {
         resetData: function() {
-            this.name = "",
-            this.description = "",
-            this.duration = "",
-            this.priority = ""
+            this.visible = false;
+            this.name = "";
+            this.description = "";
+            this.duration = "";
+            this.priority = "";
         },
         addTask : function() {
             if (this.name && this.description && this.duration && this.priority) {

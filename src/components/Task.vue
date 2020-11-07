@@ -1,6 +1,19 @@
 <template>
     <div>
-        <h3>{{ taskName }}</h3>
+        <h3 v-if="status">
+            <strike> 
+                {{ taskName }}
+            </strike>
+            <span>
+                <button @click="toggleStatus">Unmark</button>
+            </span> 
+        </h3>
+        <h3 v-else>
+                {{ taskName }}
+            <span>
+                <button @click="toggleStatus">Mark</button>
+            </span>
+        </h3>
         <div v-if="visible">
             <ul>
                 <li>Description: {{ description }}</li>
@@ -10,15 +23,16 @@
         </div>
         <button v-on:click="toggleVis">{{ visible ? "Hide" : "Show" }}</button>
         <button v-on:click="removeTask">Remove</button>
-        <button @click="editTask">Edit</button>
-        <div v-if="enableEdit">
+        <button v-if="!editVis" @click="toggleEditTask">Edit</button><br>
+        <div v-if="editVis">
             <edit-form
                 :id="id"
                 :name="taskName"
                 :description="description"
                 :duration="duration"
                 :priority="priority"
-                @update-task="updateTask"></edit-form>
+                @update-task="updateTask"
+                @abort-update="toggleEditTask"></edit-form>
         </div>
     </div>
 </template>
@@ -39,11 +53,12 @@ export default {
         description:String,
         duration: Number,
         priority: String,
+        status: Boolean
     },
     data : function() {
         return {
             visible : true,
-            enableEdit: false
+            editVis: false
         };
     },
     methods : {
@@ -53,12 +68,16 @@ export default {
         removeTask : function() {
             this.$emit("remove-task", this.id);
         },
-        editTask: function() {
-            this.enableEdit = !this.enableEdit;
+        toggleEditTask: function() {
+            this.editVis = !this.editVis;
         },
-        updateTask: function(id, name, desc, dur, pr, vis) {
-            this.enableEdit = vis;
+        updateTask: function(id, name, desc, dur, pr) {
+            this.editVis = !this.editVis;
             this.$emit("update-task", id, name, desc, dur, pr);
+        },
+        toggleStatus: function() {
+            this.$emit("toggle-status", this.id);
+            console.log(`${this.taskName} was marked ${this.status}`);
         }, 
     },
     

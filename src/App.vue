@@ -1,6 +1,6 @@
 <template>
 <div>
-    <task-form @add-task="addTask"></task-form>
+    <h1>Task Master</h1>
     <task 
         v-for="task in tasks" 
         :key="task.id"
@@ -9,9 +9,12 @@
         :description="task.description"
         :duration="task.duration"
         :priority="task.priority"
+        :status="task.status"
         @remove-task="removeTask"
-        @update-task="updateTask">
+        @update-task="updateTask"
+        @toggle-status="toggleStatus">
     </task>
+    <task-form @add-task="addTask"></task-form>
 </div>
 </template>
 
@@ -32,6 +35,7 @@ let app = {
                     description:`Clean Room, Wash dishes, fill tanks`,
                     duration: 60,
                     priority: 'High',
+                    status: false,
                 },
                 {
                     id: Math.floor(Math.random() * 100 + 100),
@@ -39,6 +43,7 @@ let app = {
                     description:`Do Math, Vocabulary, etc`,
                     duration: 120,
                     priority: 'High',
+                    status: false,
                 },
                 {
                     id: Math.floor(Math.random() * 100 + 100),
@@ -46,6 +51,7 @@ let app = {
                     description:`Go to Sam's Birthday Party and enjoy. However Donot stay for long`,
                     duration: 60,
                     priority: 'Low',
+                    status: false,
                 },
                 {
                     id: Math.floor(Math.random() * 100 + 100),
@@ -53,6 +59,7 @@ let app = {
                     description : `Do it for atleast 30 mins. This includes pranayama.`,
                     duration: 30,
                     priority: 'Intermediate',
+                    status: false,
                 }
             ]
         };
@@ -73,13 +80,16 @@ let app = {
             this.tasks = newTasks;
         },
         updateTask(id, name, desc, dur, pr) {
-            console.log(id, name, desc, dur, pr);
             let target = this.tasks.findIndex(task => task.id === id);
             this.tasks[target].taskName=name;
             this.tasks[target].description=desc;
             this.tasks[target].duration=dur;
             this.tasks[target].priority=pr;
         },
+        toggleStatus: function(id) {
+            let target = this.tasks.findIndex(task => task.id === id);
+            this.tasks[target].status = !this.tasks[target].status;
+        }
     },
 };
 export default app;
