@@ -21,7 +21,6 @@ export default {
   emits: ["update-task"],
   data: function() {
     return {
-      visible: false,
       eId: this.id,
       eName: this.name,
       eDesc: this.description,
@@ -37,11 +36,10 @@ export default {
         this.eName,
         this.eDesc,
         this.eDuration,
-        this.ePriority,
-        this.visible
+        this.ePriority
       );
     },
-    abortUpdate : function() {
+    abortUpdate: function() {
       this.$emit("abort-update");
     },
   },
