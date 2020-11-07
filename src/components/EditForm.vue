@@ -17,6 +17,7 @@ export default {
         duration: String,
         priority: String
     },
+    emits: ["update-task"],
     data : function(){
         return {
             visible: false,

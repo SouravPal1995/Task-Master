@@ -19,6 +19,7 @@ export default {
         "taskDuration",
         "taskPriority"
     ],
+    emits:['add-task'],
     data: function() {
         return {
             visible: true, 

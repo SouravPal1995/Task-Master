@@ -29,6 +29,10 @@ export default {
     components : {
         'edit-form':EditForm,
     },
+    emits: [
+        'remove-task',
+        'update-task'
+    ],
     props: {
         id: Number,
         taskName: String,
