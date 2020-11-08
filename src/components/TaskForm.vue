@@ -1,7 +1,7 @@
 <template>
   <div>
     <button v-if="!visible" @click="toggleView">
-      "++++++++++Add New Task++++++++++"
+      "+++++Add New Task++++"
     </button>
     <div v-if="visible">
       <input type="text" placeholder="Name" v-model="name" />

@@ -48,14 +48,6 @@ let app = {
         },
         {
           id: Math.floor(Math.random() * 100 + 100),
-          taskName: "Party",
-          description: `Go to Sam's Birthday Party and enjoy. However Donot stay for long`,
-          duration: 60,
-          priority: "Low",
-          status: false,
-        },
-        {
-          id: Math.floor(Math.random() * 100 + 100),
           taskName: "Meditate",
           description: `Do it for atleast 30 mins. This includes pranayama.`,
           duration: 30,
