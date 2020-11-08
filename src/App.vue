@@ -77,18 +77,18 @@ let app = {
       this.tasks.push(newTask);
     },
     removeTask: function(id) {
-      let newTasks = this.tasks.filter((task) => task.id !== id);
+      let newTasks = this.tasks.filter(task => task.id !== id);
       this.tasks = newTasks;
     },
     updateTask(id, name, desc, dur, pr) {
-      let target = this.tasks.findIndex((task) => task.id === id);
+      let target = this.tasks.findIndex(task => task.id === id);
       this.tasks[target].taskName = name;
       this.tasks[target].description = desc;
       this.tasks[target].duration = dur;
       this.tasks[target].priority = pr;
     },
     toggleStatus: function(id) {
-      let target = this.tasks.findIndex((task) => task.id === id);
+      let target = this.tasks.findIndex(task => task.id === id);
       this.tasks[target].status = !this.tasks[target].status;
     },
   },

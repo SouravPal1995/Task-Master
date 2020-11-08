@@ -10,11 +10,6 @@
         {{ taskName }}
       </h3>
     </div>
-    <span>
-      <button @click="toggleStatus">
-        {{ status ? "Unmark" : "Mark as Done" }}
-      </button>
-    </span>
     <div v-if="visible">
       <ul>
         <li>Description: {{ description }}</li>
@@ -23,8 +18,11 @@
       </ul>
     </div>
     <button v-on:click="toggleVis">{{ visible ? "Hide" : "Show" }}</button>
-    <button v-on:click="removeTask">Remove</button>
-    <button v-if="!editVis" @click="toggleEditTask">Edit</button><br />
+    <button v-on:click="removeTask">Delete</button>
+    <button v-if="!editVis" @click="toggleEditTask">Edit</button>
+    <button @click="toggleStatus">
+      {{ status ? "Unmark" : "Mark" }}
+    </button>
     <div v-if="editVis">
       <edit-form
         :id="id"
@@ -45,7 +43,7 @@ export default {
   components: {
     "edit-form": EditForm,
   },
-  emits: ["remove-task", "update-task"],
+  emits: ["remove-task", "update-task", "toggle-status"],
   props: {
     id: Number,
     taskName: String,
@@ -76,7 +74,6 @@ export default {
     },
     toggleStatus: function() {
       this.$emit("toggle-status", this.id);
-      console.log(`${this.taskName} was marked ${this.status}`);
     },
   },
 };

@@ -16,7 +16,6 @@
 
 <script>
 export default {
-  props: ["taskName", "taskDescription", "taskDuration", "taskPriority"],
   emits: ["add-task"],
   data: function() {
     return {
