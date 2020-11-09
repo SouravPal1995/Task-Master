@@ -4,7 +4,7 @@
     <input type="text" placeholder="Description" v-model="eDesc" />
     <input type="text" placeholder="Duration" v-model="eDuration" />
     <input type="text" placeholder="priority" v-model="ePriority" />
-    <button @click="updateFormVis(), updateTask($event, eId, eName, eDesc, eDuration, ePriority)">Update</button>
+    <button @click="updateFormVis(), updateTask(eId, eName, eDesc, eDuration, ePriority)">Update</button>
     <button @click="abortUpdate">Cancel</button>
   </div>
 </template>
@@ -31,7 +31,6 @@ export default {
   inject : ['updateTask'],
   methods: {
     updateFormVis: function() {
-      console.log("UpdateFormVis was called");
       this.$emit("update-vis");
     },
     abortUpdate: function() {

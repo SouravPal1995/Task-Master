@@ -77,9 +77,7 @@ let app = {
       let newTasks = this.tasks.filter(task => task.id !== id);
       this.tasks = newTasks;
     },
-    updateTask(event, id, name, desc, dur, pr) {
-      console.log("UpdateTask was called");
-      console.log(event);
+    updateTask(id, name, desc, dur, pr) {
       let target = this.tasks.findIndex(task => task.id === id);
       this.tasks[target].taskName = name;
       this.tasks[target].description = desc;
