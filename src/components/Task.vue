@@ -30,7 +30,7 @@
         :description="description"
         :duration="duration"
         :priority="priority"
-        @update-task="updateTask"
+        @update-vis="updateTask"
         @abort-update="toggleEditTask"
       ></edit-form>
     </div>
@@ -68,9 +68,8 @@ export default {
     toggleEditTask: function() {
       this.editVis = !this.editVis;
     },
-    updateTask: function(id, name, desc, dur, pr) {
+    updateTask: function() {
       this.editVis = !this.editVis;
-      this.$emit("update-task", id, name, desc, dur, pr);
     },
     toggleStatus: function() {
       this.$emit("toggle-status", this.id);

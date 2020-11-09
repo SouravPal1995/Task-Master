@@ -49,12 +49,17 @@ let app = {
         {
           id: Math.floor(Math.random() * 100 + 100),
           taskName: "Meditate",
-          description: `Do it for atleast 30 mins. This includes pranayama.`,
+          description: `Do it for atleast 30 mins.\nThis includes pranayama.`,
           duration: 30,
           priority: "Intermediate",
           status: false,
         },
       ],
+    };
+  },
+  provide : function() {
+    return {
+      updateTask: this.updateTask
     };
   },
   methods: {
@@ -72,7 +77,9 @@ let app = {
       let newTasks = this.tasks.filter(task => task.id !== id);
       this.tasks = newTasks;
     },
-    updateTask(id, name, desc, dur, pr) {
+    updateTask(event, id, name, desc, dur, pr) {
+      console.log("UpdateTask was called");
+      console.log(event);
       let target = this.tasks.findIndex(task => task.id === id);
       this.tasks[target].taskName = name;
       this.tasks[target].description = desc;
