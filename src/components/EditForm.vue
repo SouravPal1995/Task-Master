@@ -5,7 +5,7 @@
     <input type="text" placeholder="Duration" v-model="eDuration" />
     <input type="text" placeholder="priority" v-model="ePriority" />
     <button @click="updateFormVis(), updateTask(eId, eName, eDesc, eDuration, ePriority)">Update</button>
-    <button @click="abortUpdate">Cancel</button>
+    <button @click="updateFormVis">Cancel</button>
   </div>
 </template>
 
@@ -32,9 +32,6 @@ export default {
   methods: {
     updateFormVis: function() {
       this.$emit("update-vis");
-    },
-    abortUpdate: function() {
-      this.$emit("abort-update");
     },
   },
 };

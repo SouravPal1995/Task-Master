@@ -28,11 +28,11 @@ export default {
   },
   methods: {
     resetData: function() {
-      this.visible = false;
       this.name = "";
       this.description = "";
       this.duration = "";
       this.priority = "";
+      this.visible = false;
     },
     addTask: function() {
       if (this.name && this.description && this.duration && this.priority) {

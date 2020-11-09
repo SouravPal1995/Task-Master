@@ -12,8 +12,7 @@
       :status="task.status"
       @remove-task="removeTask"
       @update-task="updateTask"
-      @toggle-status="toggleStatus"
-    >
+      @toggle-status="toggleStatus">
     </task>
     <task-form @add-task="addTask"></task-form>
   </div>
@@ -57,9 +56,9 @@ let app = {
       ],
     };
   },
-  provide : function() {
+  provide: function() {
     return {
-      updateTask: this.updateTask
+      updateTask: this.updateTask,
     };
   },
   methods: {
@@ -77,12 +76,12 @@ let app = {
       let newTasks = this.tasks.filter(task => task.id !== id);
       this.tasks = newTasks;
     },
-    updateTask(id, name, desc, dur, pr) {
+    updateTask(id, name, description, duration, priority) {
       let target = this.tasks.findIndex(task => task.id === id);
       this.tasks[target].taskName = name;
-      this.tasks[target].description = desc;
-      this.tasks[target].duration = dur;
-      this.tasks[target].priority = pr;
+      this.tasks[target].description = description;
+      this.tasks[target].duration = duration;
+      this.tasks[target].priority = priority;
     },
     toggleStatus: function(id) {
       let target = this.tasks.findIndex(task => task.id === id);
