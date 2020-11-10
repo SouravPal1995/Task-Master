@@ -53,6 +53,14 @@ let app = {
           priority: "Intermediate",
           status: false,
         },
+        {
+          id: Math.floor(Math.random() * 100 + 100),
+          taskName: "Lock Up House",
+          description: `Make sure you double check the doors`,
+          duration: 15,
+          priority: "High",
+          status: false,
+        },
       ],
     };
   },
